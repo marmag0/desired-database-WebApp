@@ -1,0 +1,38 @@
+name: desired-database-webapp
+
+services:
+  webapp-db:
+    image: timescale/timescaledb:latest-pg17
+    container_name: webapp-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=webapp_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - webapp-db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d webapp_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  dbmate:
+    image: amacneil/dbmate
+    container_name: migrator-db
+    environment:
+      - DATABASE_URL=postgres://postgres:password@webapp-db:5432/webapp_db?sslmode=disable
+      - DBMATE_MIGRATIONS_DIR=/migrations
+      - DBMATE_NO_DUMP=true
+    volumes:
+      - ./migrations:/migrations
+    command: --no-dump-schema up
+    restart: "no"
+    depends_on:
+      webapp-db:
+        condition: service_healthy
+
+volumes:
+  webapp-db-data:
