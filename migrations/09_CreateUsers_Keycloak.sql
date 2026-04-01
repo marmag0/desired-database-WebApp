@@ -11,3 +11,8 @@ CREATE ROLE "Role.Keycloak" WITH
 	PASSWORD NULL;
 
 COMMENT ON ROLE "Role.Keycloak" IS 'Właściciel bazy Keycloak';
+
+
+-- migrate:down transaction:false
+
+DROP ROLE IF EXISTS "Role.Keycloak";

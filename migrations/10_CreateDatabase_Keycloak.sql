@@ -1,4 +1,4 @@
--- migrate:up
+-- migrate:up transaction:false
 
 CREATE DATABASE "Keycloak"
     WITH 
@@ -6,5 +6,7 @@ CREATE DATABASE "Keycloak"
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1;
 
-COMMENT ON DATABASE "Keycloak"
-    IS 'Keycloak service Database';
+
+-- migrate:down transaction:false
+
+DROP TABLE IF EXISTS "Keycloak"

@@ -49,3 +49,11 @@ CREATE ROLE "Role.Production" WITH
 
 GRANT "Role.Dev", "Role.CRUD" TO "Role.Production";
 COMMENT ON ROLE "Role.Production" IS 'Daje dostęp do produkcyjnej bazy aplikacji';
+
+
+-- migrate:down transaction:false
+
+DROP ROLE IF EXISTS "Role.Production";
+DROP ROLE IF EXISTS "Role.Dev";
+DROP ROLE IF EXISTS "Role.CRUD";
+DROP ROLE IF EXISTS "Role.Owner";

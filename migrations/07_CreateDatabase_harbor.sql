@@ -1,4 +1,4 @@
--- migrate:up
+-- migrate:up transaction:false
 
 CREATE DATABASE "Harbor"
     WITH 
@@ -6,5 +6,7 @@ CREATE DATABASE "Harbor"
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1;
 
-COMMENT ON DATABASE "Harbor"
-    IS 'Harbor service Database';
+
+-- migrate:down transaction:false
+
+DROP TABLE IF EXISTS "Harbor"
