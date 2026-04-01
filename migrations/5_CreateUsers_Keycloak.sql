@@ -1,0 +1,13 @@
+-- migrate:up transaction:false
+
+CREATE ROLE "Role.Keycloak" WITH
+	LOGIN
+	NOSUPERUSER
+	NOCREATEDB
+	NOCREATEROLE
+	NOINHERIT
+	NOREPLICATION
+	CONNECTION LIMIT -1
+	PASSWORD NULL;
+
+COMMENT ON ROLE "Role.Keycloak" IS 'Właściciel bazy Keycloak';

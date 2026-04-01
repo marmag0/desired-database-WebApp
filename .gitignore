@@ -1,0 +1,26 @@
+# System files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.AppleDouble
+.LSOverride
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# PostgreSQL / Databases
+/pgdata/
+*.sql.gz
+*.sql.bak
+
+# dbmate & Environment
+.env
+.env.local
+.env.*.local
+
+# Project specific
+node_modules/
+.idea/
+.vscode/
