@@ -13,4 +13,4 @@ This repository shows a database system designed to store and process telemetry 
 
 ### Desired Design
 
-...
+![Database Architecture](https://marmag0.github.io/endpoints/spectrum/database-WebApp.png)
