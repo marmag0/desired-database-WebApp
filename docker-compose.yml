@@ -2,7 +2,7 @@ name: desired-database-webapp
 
 services:
   webapp-db:
-    image: timescale/timescaledb:latest-pg17
+    image: timescale/timescaledb-ha:pg16-ts2.26
     container_name: webapp-db
     environment:
       - POSTGRES_USER=postgres
